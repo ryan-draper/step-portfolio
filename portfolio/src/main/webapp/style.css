@@ -4,6 +4,17 @@
   width: 650px;
 }
 
+h1 {
+  color: steelblue;
+}
+
 #greeting-container {
   margin-top: 20px;
+}
+
+#button-section {
+  background-color: lightblue;
+  width: 400px;
+  padding: 25px;
+  border: 25px solid steelblue;
 }
