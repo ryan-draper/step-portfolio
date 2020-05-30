@@ -4,22 +4,82 @@
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href=
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
       <h1>Ryan Draper</h1>
-      <p>This is my portfolio.</p>
-      <p> Hi, my name is Ryan, and I'm a sophomore at Rice University majoring 
-          in Computer Science. This summer, I am interning at Google as a part 
-          of their STEP program. In my free time, I love listening to music, 
-          chilling with friends, and cooking breakfast food.</p>
-      <img src="/images/ryandraper.jpg" alt="Photo of Me">
-      <div id="button-section">
-        <p>Click here to get a random message:</p>
-        <button onclick="addRandomGreeting()">Hello</button>
+      <a target="_blank" rel="noopener noreferrer" 
+      href="https://www.linkedin.com/in/ryan-draper" class="fa fa-linkedin"></a>
+      <a target="_blank" rel="noopener noreferrer" 
+      href="https://www.facebook.com/ryan.draper.7503" class="fa fa-facebook"></a>
+      <p> </p>
+      <!-- ABOUT ME -->
+      <div id="about-me">
+        <h2>About Me</h2>
+        <p> I'm a sophomore at Rice University majoring in Computer Science and 
+            currently interning at Google as a part of their STEP program. 
+            From a young age I had a huge interest in consumer tech products
+            (shoutout to <a target="_blank" rel="noopener noreferrer" href=
+            "https://www.youtube.com/user/marquesbrownlee">Marques Brownlee!</a>).
+            This interest has since grown into a full-fledged dedication to 
+            technology and my goal to help create software solutions to 
+            tomorrow's problems. In my free time, I love listening to music, 
+            chilling with friends, and cooking breakfast food.</p>
       </div>
-      <div id="greeting-container"></div>
+      <p> </p>
+      <!-- PROJECTS -->
+      <div id="projects">
+        <h2>Projects</h2>
+        <h3>Disease Transmission Mapping (Python)</h3>
+        <p> March 2020 </p>
+        <ul>
+            <li>Implemented functions to read in disease transmission data and 
+                build a graph where nodes represent hospital patients and edges 
+                represent the likelihood of connectedness in transmission based 
+                on time difference between hospital visits and gene 
+                similarity</li>
+            <li>Computed the rooted directed minimum spanning tree (RDMST) of 
+                the graph to determine the most likely transmission map, which 
+                involves functions such as computing cycles in the graph, 
+                contracting cycles into single nodes, and expanding the 
+                contracted cycles</li>
+        </ul>
+        <h3>Houston Crime Prediction (Python, pandas, scikit-learn)</h3>
+        <p> December 2019 </p>
+        <ul>
+            <li>Developed linear models to predict crime rates by zip code in the 
+                Houston area for the year 2020 and beyond </li>
+        </ul>
+        <a target="_blank" rel="noopener noreferrer" 
+            href="https://github.com/ryan-draper">See more projects on my GitHub page.</a>
+      </div>
+      <p> </p>
+      <img src="/images/ryandraper.jpg" alt="Photo of Me">
+      <!-- BLOG -->
+      <div id="blog">
+        <h2>Blog</h2>
+        <p>Blog page coming soon!</p>
+        <!-- TODO: add a button that leads to blog page -->
+      </div>
+      <p> </p>
+      <p> </p>
+      <!-- RANDOM BUTTON -->
+      <h2>TV Quotes</h2>
+      <div id="button-section">
+        <p>Click here to get a quote from some of Ryan's favorite TV shows:</p>
+        <button onclick="addRandomQuote()">here</button>
+      </div>
+      <div id="quote-container"></div>
+      <p> </p>
+      <div id="music">
+          <h2>What I'm Listening To</h2>
+          <iframe src="https://open.spotify.com/embed/track/0Li1OuXXfi7950ilZUFGkF" 
+          width="300" height="380" frameborder="0" 
+          allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
     </div>
   </body>
 </html>
