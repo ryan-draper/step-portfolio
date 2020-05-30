@@ -4,49 +4,89 @@
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href=
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
+    <!-- Font Awesome Files -->
+    <link rel="stylesheet" href="all.css">
+    <!-- Bootstrap CSS and JS files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>Ryan Draper</h1>
-      <a target="_blank" rel="noopener noreferrer" 
-      href="https://www.linkedin.com/in/ryan-draper" class="fa fa-linkedin"></a>
-      <a target="_blank" rel="noopener noreferrer" 
-      href="https://www.facebook.com/ryan.draper.7503" class="fa fa-facebook"></a>
-      <p> </p>
-      <!-- ABOUT ME -->
-      <div id="about-me">
-        <h2>About Me</h2>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="index.html">RYAN DRAPER</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#About_Me">ABOUT ME</a></li>
+            <li><a href="#Projects">PROJECTS</a></li>
+            <li><a href="#Interests">INTERESTS</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+        </ul>
+        </div>
+        </div>
+    </div>
+    </nav>
+
+    <!-- INTRO -->
+    <div class="container-fluid bg-1 text-center">
+      <div id="photo-of-me">
+      <img src="/images/ryandraper.jpg" class="img-circle" alt="Ryan Draper" width="350" height="350">
+      </div>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/ryan.draper.7503"> <i class="fab fa-3x fa-facebook-f fa-fw spaced"></i></a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ryan-draper"> <i class="fab fa-3x fa-linkedin-in fa-fw spaced"></i></a>
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/ryan-draper"> <i class="fab fa-3x fa-github fa-fw spaced"></i></a>
+    </div>
+
+    <!-- ABOUT ME -->
+    <div class="container-fluid bg-2 text-center">
+      <h2 id="About_Me">About Me</h2>
+      <div class="adjusted-left">
+        <p> <i class="fas fa-briefcase"></i> STEP Intern at Google </p>
+        <p> <i class="fas fa-school"></i> Computer Science Student at Rice University </p>
+        <p> <i class="fas fa-map-marker-alt"></i> San Jose, CA </p>
+        <p> <i class="fas fa-terminal"></i> Proficient in Python, Java, Git </p>
+        <p> <i class="fas fa-code"></i> Familiar with HTML, CSS, Javascript, C++, LaTeX, YAML, pandas, scikit-learn </p>
         <p> I'm a sophomore at Rice University majoring in Computer Science and 
             currently interning at Google as a part of their STEP program. 
             From a young age I had a huge interest in consumer tech products
             (shoutout to <a target="_blank" rel="noopener noreferrer" href=
-            "https://www.youtube.com/user/marquesbrownlee">Marques Brownlee!</a>).
+            "https://www.youtube.com/user/marquesbrownlee">Marques Brownlee</a>!).
             This interest has since grown into a full-fledged dedication to 
             technology and my goal to help create software solutions to 
             tomorrow's problems. In my free time, I love listening to music, 
             chilling with friends, and cooking breakfast food.</p>
       </div>
-      <p> </p>
-      <!-- PROJECTS -->
-      <div id="projects">
-        <h2>Projects</h2>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="container-fluid bg-3 text-center">
+      <h2 id="Projects">Projects</h2>
+      <div class="adjusted-left">
         <h3>Disease Transmission Mapping (Python)</h3>
         <p> March 2020 </p>
-        <ul>
-            <li>Implemented functions to read in disease transmission data and 
-                build a graph where nodes represent hospital patients and edges 
-                represent the likelihood of connectedness in transmission based 
-                on time difference between hospital visits and gene 
-                similarity</li>
-            <li>Computed the rooted directed minimum spanning tree (RDMST) of 
-                the graph to determine the most likely transmission map, which 
-                involves functions such as computing cycles in the graph, 
-                contracting cycles into single nodes, and expanding the 
-                contracted cycles</li>
-        </ul>
+            <ul>
+                <li>Implemented functions to read in disease transmission data and 
+                    build a graph where nodes represent hospital patients and edges 
+                    represent the likelihood of connectedness in transmission based 
+                    on time difference between hospital visits and gene 
+                    similarity</li>
+                <li>Computed the rooted directed minimum spanning tree (RDMST) of 
+                    the graph to determine the most likely transmission map, which 
+                    involves functions such as computing cycles in the graph, 
+                    contracting cycles into single nodes, and expanding the 
+                    contracted cycles</li>
+            </ul>
         <h3>Houston Crime Prediction (Python, pandas, scikit-learn)</h3>
         <p> December 2019 </p>
         <ul>
@@ -56,30 +96,38 @@
         <a target="_blank" rel="noopener noreferrer" 
             href="https://github.com/ryan-draper">See more projects on my GitHub page.</a>
       </div>
-      <p> </p>
-      <img src="/images/ryandraper.jpg" alt="Photo of Me">
-      <!-- BLOG -->
-      <div id="blog">
-        <h2>Blog</h2>
-        <p>Blog page coming soon!</p>
-        <!-- TODO: add a button that leads to blog page -->
-      </div>
-      <p> </p>
-      <p> </p>
-      <!-- RANDOM BUTTON -->
-      <h2>TV Quotes</h2>
-      <div id="button-section">
-        <p>Click here to get a quote from some of Ryan's favorite TV shows:</p>
-        <button onclick="addRandomQuote()">here</button>
-      </div>
-      <div id="quote-container"></div>
-      <p> </p>
-      <div id="music">
-          <h2>What I'm Listening To</h2>
+    </div>
+
+    <!-- INTERESTS -->
+    <div class="container-fluid bg-4 text-center">
+      <h2 id="Interests">Interests</h2>
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Blog</h3>
+          <p>Blog page coming soon!</p>
+          <a href="blog.html"><button>Check Out My Blog!</button></a>
+        </div>
+        <div class="col-sm-4">
+          <h3>What I'm Listening To</h3>
           <iframe src="https://open.spotify.com/embed/track/0Li1OuXXfi7950ilZUFGkF" 
           width="300" height="380" frameborder="0" 
           allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+        <div class="col-sm-4">
+          <h3>TV Quotes</h3>
+          <div id="button-section">
+            <p>Click here to get a quote from some of Ryan's favorite TV shows:</p>
+            <button onclick="addRandomQuote()">here</button>
+          </div>
+        </div>
+        <div id="quote-container"></div>
       </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="container-fluid bg-5 text-center">
+        <p>Designed using Bootstrap and Font Awesome.</a></p>
+    </footer>
+
   </body>
 </html>
