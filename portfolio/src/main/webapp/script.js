@@ -30,3 +30,14 @@ const quotes =
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }
+
+/**
+ * Adds a random quote to the page using fetch() to request content from the server.
+ */
+function getRandomQuoteUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((quote) => {
+    console.log('Adding quote to dom: ' + quote);
+    document.getElementById('quote-container').innerText = quote;
+  });
+}
+
