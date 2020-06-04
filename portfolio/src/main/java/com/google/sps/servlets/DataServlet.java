@@ -26,8 +26,37 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
+  
   private List<String> quotes;
+  private List<String[]> comments = new ArrayList<>();
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "name-input", "");
+    String content = getParameter(request, "comment-input", "");
+
+    String[] comment = {name, content};
+    comments.add(comment);
+
+    // Respond with the result.
+    for(int i = 0; i < comments.size(); i++) {
+        response.setContentType("text/html;");
+        response.getWriter().println(comments.get(i)[0] + ": " + comments.get(i)[1] + "<br>");
+    }
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
   
   @Override
   public void init() {
