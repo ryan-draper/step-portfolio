@@ -13,31 +13,33 @@
 // limitations under the License.
 
 /**
- * Adds a random quote to the page.
+ * Fetches stats from the servers and adds them to the DOM.
  */
-function addRandomQuote() {
-const quotes =
-      ['\"There\'s only one thing I hate more than lying: skim milk. Which is water lying about being milk.\" - Ron Swanson', 
-      '\"Just remember, every time you look up at the moon, I, too, will be looking at a moon. Not the same one, obviously. That\'s impossible.\" - Andy Dwyer',
-      '\"I\'ve made a huge mistake.\" - Gob Bluth', '\"There\'s always money in the banana stand.\" - George Bluth',
-      '\"Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.\" - Michael Scott',
-       '\"Kids, you tried your best and you failed miserably. The lesson is never try.\" - Homer Simpson'];
+function getQuoteFromServer() {
+  fetch('/data').then(response => response.json()).then((quote) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
 
-  // Pick a random quote.
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-  // Add it to the page.
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
-}
-
-/**
- * Adds a random quote to the page using fetch() to request content from the server.
- */
-function getRandomQuoteUsingArrowFunctions() {
-  fetch('/data').then(response => response.text()).then((quote) => {
-    console.log('Adding quote to dom: ' + quote);
-    document.getElementById('quote-container').innerText = quote;
+    const statsListElement = document.getElementById('quote-container');
+    statsListElement.innerHTML = '';
+    statsListElement.appendChild(
+        createListElement('Ron Swanson: ' + quote[0]));
+    statsListElement.appendChild(
+        createListElement('Andy Dwyer: ' + quote[1]));
+    statsListElement.appendChild(
+        createListElement('Gob Bluth: ' + quote[2]));
+    statsListElement.appendChild(
+        createListElement('George Bluth: ' + quote[3]));
+    statsListElement.appendChild(
+        createListElement('Michael Scott: ' + quote[4]));
+    statsListElement.appendChild(
+        createListElement('Homer Simpson: ' + quote[5]));
   });
 }
 
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
