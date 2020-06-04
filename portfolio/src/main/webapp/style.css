@@ -88,6 +88,11 @@ img {
 }
 
 .bg-5 { 
+  background-color: #ffffff;
+  color: #181818;
+}
+
+.bg-6 { 
   background-color: #181818;
   color: #ffffff;
 }

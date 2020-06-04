@@ -124,8 +124,26 @@
       </div>
     </div>
 
+    <!-- COMMENTS -->
+    <div class="container-fluid bg-5 text-center">
+      <h2 id="Comments">Comments</h2>
+
+      <form action="/data" method="POST">
+        <!-- TODO: properly handle empty name/comment entries. -->
+        <p>Your Name:</p>
+        <textarea name="name-input"></textarea>
+        <br/>
+
+        <p>Your Comment:</p>
+        <textarea name="comment-input"></textarea>
+        <br/><br/>
+
+        <input type="submit" />
+      </form>
+    </div>
+
     <!-- FOOTER -->
-    <footer class="container-fluid bg-5 text-center">
+    <footer class="container-fluid bg-6 text-center">
         <p>Designed using Bootstrap and Font Awesome.</a></p>
     </footer>
 
