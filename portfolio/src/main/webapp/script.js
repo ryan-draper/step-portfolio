@@ -12,29 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Fetches stats from the servers and adds them to the DOM.
- */
-function getQuoteFromServer() {
-  fetch('/data').then(response => response.json()).then((quote) => {
-    // stats is an object, not a string, so we have to
-    // reference its fields to create HTML content
 
-    const statsListElement = document.getElementById('quote-container');
-    statsListElement.innerHTML = '';
-    statsListElement.appendChild(
-        createListElement('Ron Swanson: ' + quote[0]));
-    statsListElement.appendChild(
-        createListElement('Andy Dwyer: ' + quote[1]));
-    statsListElement.appendChild(
-        createListElement('Gob Bluth: ' + quote[2]));
-    statsListElement.appendChild(
-        createListElement('George Bluth: ' + quote[3]));
-    statsListElement.appendChild(
-        createListElement('Michael Scott: ' + quote[4]));
-    statsListElement.appendChild(
-        createListElement('Homer Simpson: ' + quote[5]));
+/** Fetches comments from the server and adds them to the DOM. */
+function loadComments() {
+  console.log("loadComments() is running");
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
   });
+}
+
+/** Creates an element that represents a comment. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'list-group-item';
+
+  const nameElement = document.createElement('span');
+  nameElement.innerText = comment.name;
+  nameElement.className = 'comment-name';
+
+  const contentElement = document.createElement('span');
+  contentElement.innerText = comment.content;
+
+  const breakElement = document.createElement('br');
+
+  commentElement.appendChild(nameElement);
+  commentElement.appendChild(breakElement);
+  commentElement.appendChild(contentElement);
+  return commentElement;
 }
 
 /** Creates an <li> element containing text. */
@@ -42,4 +49,23 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+/**
+ * Adds a random quote to the page.
+ */
+function addRandomQuote() {
+  const quotes =
+      ['\"There\'s only one thing I hate more than lying: skim milk. Which is water lying about being milk.\" - Ron Swanson', 
+      '\"Just remember, every time you look up at the moon, I, too, will be looking at a moon. Not the same one, obviously. That\'s impossible.\" - Andy Dwyer',
+      '\"I\'ve made a huge mistake.\" - Gob Bluth', '\"There\'s always money in the banana stand.\" - George Bluth',
+      '\"Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.\" - Michael Scott',
+       '\"Kids, you tried your best and you failed miserably. The lesson is never try.\" - Homer Simpson'];
+
+  // Pick a random quote.
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  // Add it to the page.
+  const quoteContainer = document.getElementById('quote-container');
+  quoteContainer.innerText = quote;
 }
