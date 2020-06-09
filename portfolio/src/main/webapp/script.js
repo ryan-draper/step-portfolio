@@ -15,34 +15,11 @@
 
 /** Fetches comments from the server and adds them to the DOM. */
 function loadComments() {
-  // loads 5 comments by default
-  fetch('/data?number-comments=5').then(response => response.json()).then((comments) => {
+  console.log("loadComments() is running");
+  fetch('/data').then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('comment-list');
-    var numComments = 5;
-    var i = 0;
     comments.forEach((comment) => {
-      if (i < numComments) {
-        commentListElement.appendChild(createCommentElement(comment));
-        i++;
-      }
-    })
-  });
-}
-
-/** Updates number of comments shown based on drop-down menu. */
-function updateComments() {
-  // clear out old comments
-  document.getElementById("comment-list").innerHTML = "";
-  // reads in selection from drop-down menu for number of comments
-  var numComments = document.getElementById("number-comments").value;
-  fetch('/data?number-comments=' + numComments.toString()).then(response => response.json()).then((comments) => {
-    const commentListElement = document.getElementById('comment-list');
-    var i = 0;
-    comments.forEach((comment) => {
-      if (i < numComments) {
-        commentListElement.appendChild(createCommentElement(comment));
-        i++;
-      }
+      commentListElement.appendChild(createCommentElement(comment));
     })
   });
 }
