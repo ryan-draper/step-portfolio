@@ -127,6 +127,18 @@
     <!-- COMMENTS -->
     <div class="container-fluid bg-5 text-center">
       <h2 id="Comments">Comments</h2>
+      <form action="/index.html" method="GET">
+        <div class="adjusted-left">
+          <label for="number-comments">Show :</label>
+          <select name="number-comments" onchange="updateComments()" id="number-comments">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </form>
+
       <form action="/data" method="POST">
         <!-- TODO: properly handle empty name/comment entries. -->
         <p>Your Name:</p>
