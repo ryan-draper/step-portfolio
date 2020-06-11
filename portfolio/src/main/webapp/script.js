@@ -73,10 +73,18 @@ function createCommentElement(comment) {
   const contentElement = document.createElement('span');
   contentElement.innerText = comment.content;
 
-  const breakElement = document.createElement('br');
+  const emailElement = document.createElement('span');
+  emailElement.innerText = comment.email;
+
+  const dateElement = document.createElement('span');
+  dateElement.innerText = comment.date;
 
   commentElement.appendChild(nameElement);
-  commentElement.appendChild(breakElement);
+  commentElement.appendChild(document.createElement('br'));
+  commentElement.appendChild(emailElement);
+  commentElement.appendChild(document.createElement('br'));
+  commentElement.appendChild(dateElement);
+  commentElement.appendChild(document.createElement('br'));
   commentElement.appendChild(contentElement);
   return commentElement;
 }

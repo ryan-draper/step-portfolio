@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -29,6 +31,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 /** Servlet that returns comment data.*/
 @WebServlet("/data")
@@ -36,14 +41,24 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
+    // Get the input from the form.   
     String name = getParameter(request, "name-input", "");
     String content = getParameter(request, "comment-input", "");
+    // Get logged in user's email
+    UserService userService = UserServiceFactory.getUserService();
+    String email = userService.getCurrentUser().getEmail();
+    // Get timestamp
     long timestamp = System.currentTimeMillis();
+    // Convert timestamp into displayable date format
+    SimpleDateFormat sdf = new SimpleDateFormat();
+    sdf.setTimeZone(TimeZone.getTimeZone("PST"));
+    String date = (String) sdf.format(new Date(timestamp));
 
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("content", content);
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("date", date);
     commentEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -76,9 +91,11 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String name = (String) entity.getProperty("name");
       String content = (String) entity.getProperty("content");
+      String email = (String) entity.getProperty("email");
+      String date = (String) entity.getProperty("date");
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Comment comment = new Comment(id, name, content, timestamp);
+      Comment comment = new Comment(id, name, content, email, date, timestamp);
       comments.add(comment);
     }
 
