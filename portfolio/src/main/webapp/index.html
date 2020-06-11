@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
-  <body onload="loadComments()">
+  <body>
 
     <!-- NAVIGATION BAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -117,7 +117,7 @@
           <h3>TV Quotes</h3>
           <div id="button-section">
             <p>Click here to get a quote from some of Ryan's favorite TV shows:</p>
-            <button onclick="addRandomQuote()">here</button>
+            <button id="random-quote">here</button>
           </div>
         </div>
         <div id="quote-container"></div>
@@ -131,7 +131,7 @@
       <form action="/index.html" method="GET">
         <div class="adjusted-left">
           <label for="number-comments">Show :</label>
-          <select name="number-comments" onchange="updateComments()" id="number-comments">
+          <select name="number-comments" id="number-comments">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>

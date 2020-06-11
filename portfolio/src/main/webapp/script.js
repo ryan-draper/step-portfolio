@@ -92,3 +92,15 @@ function addRandomQuote() {
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }
+
+window.addEventListener('load', (event) => {
+  console.log("calling loadComments!!!");
+  loadComments();
+});
+
+window.onload=function() {
+  const quoteButton = document.getElementById("random-quote");
+  quoteButton.addEventListener("click", addRandomQuote, false);
+  const commentsButton = document.getElementById("number-comments");
+  commentsButton.addEventListener("change", updateComments, false);
+}
