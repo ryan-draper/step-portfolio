@@ -13,6 +13,20 @@
 // limitations under the License.
 
 
+/** Determines whether to display the comment form based on login status. */
+function displayCommentForm() {
+  // check login page to see if the message indicates that the user is logged in
+  fetch('/login').then(response => response.text()).then((message) => {
+    if (message.trim() === "<p>You're logged in!</p>") {
+      // if logged in, hide login button and show comment form
+      document.getElementById("login-section").style.display = "none";
+    } else {
+      // if not logged in, hide comment form so only login button shows
+      document.getElementById("comment-form").style.display = "none";
+    }
+  });
+}
+
 /** Fetches comments from the server and adds them to the DOM. */
 function loadComments() {
   // loads 5 comments by default
@@ -94,13 +108,10 @@ function addRandomQuote() {
 }
 
 window.addEventListener('load', (event) => {
-  console.log("calling loadComments!!!");
+  displayCommentForm();
   loadComments();
-});
-
-window.onload=function() {
   const quoteButton = document.getElementById("random-quote");
   quoteButton.addEventListener("click", addRandomQuote, false);
   const commentsButton = document.getElementById("number-comments");
   commentsButton.addEventListener("change", updateComments, false);
-}
+});
