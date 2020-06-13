@@ -127,6 +127,9 @@
     <!-- COMMENTS -->
     <div class="container-fluid bg-5 text-center">
       <h2 id="Comments">Comments</h2>
+      <div id="login-section">
+        <a href="/login"><button>Login</button></a>
+      </div>
       
       <form action="/index.html" method="GET">
         <div class="adjusted-left">
@@ -140,7 +143,7 @@
         </div>
       </form>
 
-      <form action="/data" method="POST">
+      <form id="comment-form" action="/data" method="POST">
         <!-- TODO: properly handle empty name/comment entries. -->
         <p>Your Name:</p>
         <textarea name="name-input"></textarea>
@@ -155,7 +158,6 @@
       <div class="adjusted-left">
         <ul id="comment-list"></ul>
       </div>
-    
     </div>
 
     <!-- FOOTER -->
