@@ -1,11 +1,11 @@
 html,body,h1,h2,h3, #links, #button-section {
-    font-family: "Roboto", sans-serif
+  font-family: "Roboto", sans-serif
 }
 
 body { 
-    padding-top: 70px;
-    margin-left: 50px;
-    margin-right: 50px;
+  padding-top: 70px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 h1 {
@@ -111,14 +111,32 @@ img {
 }
 
 .adjusted-left {
-    text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+  text-align: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.comment-list {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+#login-section {
+  text-align: right;
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+#username-info {
+  text-align: right;
+  margin-left: 20px;
+  margin-right: 40px;
 }
 
 .spaced {
-    margin-left: 20px;
-    margin-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 #comment-list {
@@ -131,12 +149,27 @@ img {
   margin: 10px;
   padding: 10px;
   width: 300px;
+  margin-right: 20px;
 }
 
 .comment span {
   flex-grow: 1;
 }
 
-.comment-name {
-    font-weight: bold;
+.comment-username {
+  font-weight: bold;
+  color: #254E58;
+}
+
+.comment-date {
+  color: #181818;
+}
+
+.comment-content {
+  color: #181818;
+}
+
+.username-and-date {
+  display: flex;
+  justify-content: space-between;
 }

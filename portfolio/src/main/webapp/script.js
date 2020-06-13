@@ -17,11 +17,16 @@
 function displayCommentForm() {
   // check login page to see if the message indicates that the user is logged in
   fetch('/login').then(response => response.text()).then((message) => {
-    if (message.trim() === "<p>You're logged in!</p>") {
+    console.log("message: " + message.trim());
+    if (message.trim().includes("Hello")) {
       // if logged in, hide login button and show comment form
       document.getElementById("login-section").style.display = "none";
+      var paragraph = document.getElementById("username");
+      var text = document.createTextNode(message.substring(10,message.indexOf(".")));
+      paragraph.appendChild(text);
     } else {
-      // if not logged in, hide comment form so only login button shows
+      // if not logged in, hide comment form and username info so only login button shows
+      document.getElementById("username-info").style.display = "none";
       document.getElementById("comment-form").style.display = "none";
     }
   });
@@ -66,25 +71,24 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'list-group-item';
 
-  const nameElement = document.createElement('span');
-  nameElement.innerText = comment.name;
-  nameElement.className = 'comment-name';
-
-  const contentElement = document.createElement('span');
-  contentElement.innerText = comment.content;
-
-  const emailElement = document.createElement('span');
-  emailElement.innerText = comment.email;
+  const usernameElement = document.createElement('span');
+  usernameElement.className = "comment-username";
+  usernameElement.innerText = comment.username;
 
   const dateElement = document.createElement('span');
+  dateElement.className = "comment-date";
   dateElement.innerText = comment.date;
 
-  commentElement.appendChild(nameElement);
-  commentElement.appendChild(document.createElement('br'));
-  commentElement.appendChild(emailElement);
-  commentElement.appendChild(document.createElement('br'));
-  commentElement.appendChild(dateElement);
-  commentElement.appendChild(document.createElement('br'));
+  const firstLine = document.createElement('div');
+  firstLine.className = "username-and-date";
+  firstLine.appendChild(usernameElement);
+  firstLine.appendChild(dateElement);
+
+  const contentElement = document.createElement('span');
+  contentElement.className = "comment-content";
+  contentElement.innerText = comment.content;
+
+  commentElement.appendChild(firstLine);
   commentElement.appendChild(contentElement);
   return commentElement;
 }
