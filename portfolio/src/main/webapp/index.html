@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPUfuQR8APETZGuj_aVloT9PRa0u6ARzU&callback=initMap"
+    type="text/javascript"></script>
   </head>
   <body>
 
@@ -124,8 +126,16 @@
       </div>
     </div>
 
-    <!-- COMMENTS -->
+    <!-- MAP -->
     <div class="container-fluid bg-5 text-center">
+      <h2 id="Map">Map</h2>
+      <br></br>
+      <div id="map"></div>
+      <br></br>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="container-fluid bg-6 text-center">
       <div id="login-section">
         <a href="/login"><button>Sign In</button></a>
       </div>
@@ -165,7 +175,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="container-fluid bg-6 text-center">
+    <footer class="container-fluid bg-7 text-center">
         <p>Designed using Bootstrap and Font Awesome.</a></p>
     </footer>
 
