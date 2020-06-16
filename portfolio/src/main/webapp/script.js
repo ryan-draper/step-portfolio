@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var map;
+var lovettMarker;
 
 /** Determines whether to display the comment form based on login status. */
 function displayCommentForm() {
@@ -121,9 +123,11 @@ function addRandomQuote() {
 
 /** Creates a map and adds it to the page. */
 function createMap() {
-  const map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 29.7174, lng: -95.4018},
-    zoom: 12,
+    zoom: 18,
+    mapTypeId: 'hybrid',
+    // dark mode theme styling:
     styles: [
       {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
       {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -205,6 +209,48 @@ function createMap() {
       }
     ]
   });
+  
+  // creates 'fly over' view effect
+  map.setTilt(45);
+
+  var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Lovett College</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Lovett College</b> is indisputably the best residential college at Rice University. '+ 
+    'Named after Rice University\'s first president, Edgar Odell Lovett College opened in 1968. '+
+    'Its concrete grating and brutalist architecture has led many to compare it to a giant toaster. '+
+    'Lovett College is known for having outstanding commons culture, meaning that people tend to '+
+    'congregate and socialize in its common area.</p>'+
+    '<p>You can learn more about Lovett <a target="_blank" rel="noopener noreferrer" href="https://lovettcollege.github.io/lovettcollege/">' +
+    'here</a>.</p>'+
+    '</div>'+
+    '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var lovett = {lat: 29.7163, lng: -95.3980};
+
+  var lovettMarker = new google.maps.Marker({
+    position: lovett,
+    map: map,
+    title: 'Lovett College'
+  });
+
+  lovettMarker.addListener('click', function() {
+    infowindow.open(map, lovettMarker);
+  });
+}
+
+function toggleBounce() {
+  if (lovettMarker.getAnimation() !== null) {
+    lovettMarker.setAnimation(null);
+  } else {
+    lovettMarker.setAnimation(google.maps.Animation.BOUNCE);
+  }
 }
 
 window.addEventListener('load', (event) => {
