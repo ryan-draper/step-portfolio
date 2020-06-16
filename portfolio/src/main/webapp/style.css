@@ -82,12 +82,17 @@ img {
 }
 
 .bg-5 { 
+  background-color: #181818;
+  color: #ffffff;
+}
+
+.bg-6 { 
   background-color: #ffffff;
   color: #181818;
 }
 
-.bg-6 { 
-  background-color: #181818;
+.bg-7 {
+  background-color: #070707;
   color: #ffffff;
 }
 
@@ -172,4 +177,12 @@ img {
 .username-and-date {
   display: flex;
   justify-content: space-between;
+}
+
+#map {
+  border: thin solid black;
+  height: 500px;
+  width: 75%;
+  margin-left:auto;
+  margin-right:auto;
 }
