@@ -41,12 +41,11 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.   
-    String name = getParameter(request, "name-input", "");
+    // Get the content input from the form.   
     String content = getParameter(request, "comment-input", "");
-    // Get logged in user's email
+    // Get logged in user's username
     UserService userService = UserServiceFactory.getUserService();
-    String email = userService.getCurrentUser().getEmail();
+    String username = getUsername(userService.getCurrentUser().getUserId());
     // Get timestamp
     long timestamp = System.currentTimeMillis();
     // Convert timestamp into displayable date format
@@ -55,9 +54,8 @@ public class DataServlet extends HttpServlet {
     String date = (String) sdf.format(new Date(timestamp));
 
     Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("username", username);
     commentEntity.setProperty("content", content);
-    commentEntity.setProperty("email", email);
     commentEntity.setProperty("date", date);
     commentEntity.setProperty("timestamp", timestamp);
 
@@ -89,13 +87,12 @@ public class DataServlet extends HttpServlet {
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String name = (String) entity.getProperty("name");
+      String username = (String) entity.getProperty("username");
       String content = (String) entity.getProperty("content");
-      String email = (String) entity.getProperty("email");
       String date = (String) entity.getProperty("date");
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Comment comment = new Comment(id, name, content, email, date, timestamp);
+      Comment comment = new Comment(id, username, content, date, timestamp);
       comments.add(comment);
     }
 
@@ -103,5 +100,22 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
+  }
+
+    /**
+   * Returns the username of the user with id, or empty String if the user has not set a username.
+   */
+  private String getUsername(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+        new Query("UserInfo")
+            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return "";
+    }
+    String username = (String) entity.getProperty("username");
+    return username;
   }
 }

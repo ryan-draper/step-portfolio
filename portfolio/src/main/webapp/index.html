@@ -126,11 +126,26 @@
 
     <!-- COMMENTS -->
     <div class="container-fluid bg-5 text-center">
-      <h2 id="Comments">Comments</h2>
       <div id="login-section">
-        <a href="/login"><button>Login</button></a>
+        <a href="/login"><button>Sign In</button></a>
       </div>
-      
+
+      <div id="username-info">
+        <p id="username"></p>
+        <a href="/username"><button>Change Username</button></a>
+        <a href="/login"><button>Sign Out</button></a>
+      </div>
+
+      <h2 id="Comments">Comments</h2>
+
+      <form id="comment-form" action="/data" method="POST">
+        <!-- TODO: properly handle empty name/comment entries. -->
+        <br/><br/>
+        <textarea name="comment-input">Add a comment...</textarea>
+        <br/><br/>
+        <input type="submit" />
+      </form>
+
       <form action="/index.html" method="GET">
         <div class="adjusted-left">
           <label for="number-comments">Show :</label>
@@ -143,19 +158,8 @@
         </div>
       </form>
 
-      <form id="comment-form" action="/data" method="POST">
-        <!-- TODO: properly handle empty name/comment entries. -->
-        <p>Your Name:</p>
-        <textarea name="name-input"></textarea>
-        <br/>
-        <p>Your Comment:</p>
-        <textarea name="comment-input"></textarea>
-        <br/><br/>
-        <input type="submit" />
-      </form>
-
       <hr/>
-      <div class="adjusted-left">
+      <div class="comment-list">
         <ul id="comment-list"></ul>
       </div>
     </div>
