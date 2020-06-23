@@ -181,8 +181,9 @@ img {
 
 #map {
   border: thin solid black;
+  color: #181818;
   height: 500px;
-  width: 75%;
+  width: 85%;
   margin-left:auto;
   margin-right:auto;
 }
