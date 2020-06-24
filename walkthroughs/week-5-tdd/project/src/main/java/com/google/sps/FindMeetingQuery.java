@@ -27,15 +27,31 @@ import java.util.ListIterator;
 public final class FindMeetingQuery {
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    // if all attendees are optional, then schedule considering them regular attendees
+    if((request.getOptionalAttendees()).containsAll(request.getAttendees())) {
+      return queryHelper(events, request);
+    }
+    List<TimeRange> ranges = queryHelper(events, request);
+    // if scheduling to accommodate optional attendees fails, try without them
+    if(ranges.size() == 0) {
+      MeetingRequest requestWithNoOptionalAttendees = 
+        new MeetingRequest(request.getAttendees(), request.getDuration());
+      return queryHelper(events, requestWithNoOptionalAttendees);
+    }
+    return ranges;
+  }
+
+  public List<TimeRange> queryHelper(Collection<Event> events, MeetingRequest request) {
     /* Basic Idea: default time range is whole day, then we look at each event and if one of the attendees at that event
        is in the new event, then remove the time slot of that event from the new time range. Then go through all the
        remaining time slots and remove ones that are not long enough to hold the meeting. */
-    
+           
     // default list of ranges is one range lasting the whole day
     List<TimeRange> ranges = new ArrayList<TimeRange>(Arrays.asList(TimeRange.WHOLE_DAY));
     for(Event event : events) {
-      Set<String> intersection = new HashSet<String>(event.getAttendees()); // creates copy of event's attendees set
-      intersection.retainAll(request.getAttendees()); // set of common attendees between event and request
+      Set<String> intersection = new HashSet<String>(request.getAttendees()); // creates copy of event's attendees set
+      intersection.addAll(new HashSet<String>(request.getOptionalAttendees())); // add optional attendees
+      intersection.retainAll(event.getAttendees()); // set of common attendees between event and request
       // if someone in the event is also an attendee for the meeting, then consider event
       if(intersection.size() > 0) {
         ListIterator<TimeRange> itr = ranges.listIterator();          
