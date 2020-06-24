@@ -25,10 +25,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.io.IOException; 
-import java.util.logging.Level; 
-import java.util.logging.Logger; 
-import java.util.logging.*; 
 
 /** */
 @RunWith(JUnit4.class)
@@ -54,9 +50,7 @@ public final class FindMeetingQueryTest {
   private static final int DURATION_60_MINUTES = 60;
   private static final int DURATION_90_MINUTES = 90;
   private static final int DURATION_1_HOUR = 60;
-  private static final int DURATION_2_HOUR = 120;
-
-  private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
+  private static final int DURATION_2_HOUR = 120; 
 
   private FindMeetingQuery query;
 
